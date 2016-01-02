@@ -1,0 +1,12 @@
+{
+  "name": "carbyne-velocity",
+  "version": "0.0.1",
+  "repository": "https://github.com/ceymard/carbyne-velocity",
+  "description": "Velocity animations with carbyne.",
+  "license": "MIT",
+  "main": "./velocity",
+  "dependencies": {
+    "carbyne": "0.0.1",
+    "velocity-animate": "^1.2.3"
+  }
+}
