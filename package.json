@@ -6,7 +6,7 @@
   "license": "MIT",
   "main": "./velocity",
   "dependencies": {
-    "carbyne": "0.0.1",
+    "carbyne": "0.1.0",
     "velocity-animate": "^1.2.3"
   }
 }
