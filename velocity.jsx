@@ -35,7 +35,7 @@ export function velocity(specs) {
 
 		atom.on('destroy:before', ev => {
 			// Call remove data
-			v.Utilities.removeData(atom.element);
+			v.Utilities.removeData(atom.element, ['velocity', 'fxqueue']);
 			// console.dir($);
 		});
 	}
