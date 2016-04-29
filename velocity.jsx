@@ -14,33 +14,6 @@ function applyStarts(element, props) {
 	}
 }
 
-// The velocity decorator ?
-export function velocity(specs) {
-	return function (atom) {
-		if (specs.enter) {
-			atom.on('mount', (ev, created) => {
-				let enter = {e: atom.element, p: clonedeep(specs.enter), o: {duration: 200}};
-				applyStarts(atom.element, enter.p);
-				v(enter)
-			});
-		}
-
-		if (specs.leave) {
-			atom.on('unmount:before', ev => {
-				let leave = {e: atom.element, p: clonedeep(specs.leave), o: {duration: 200}};
-				applyStarts(atom.element, leave.p);
-				return v(leave)
-			});
-		}
-
-		atom.on('destroy:before', ev => {
-			// Call remove data
-			v.Utilities.removeData(atom.element, ['velocity', 'fxqueue']);
-			// console.dir($);
-		});
-	}
-}
-
 
 /// XXX this is not up to what we want
 export class Staggerer {
@@ -58,9 +31,55 @@ export class Staggerer {
 	}
 }
 
+export class VelocityCtrl extends Controller {
+
+	constructor(spec) {
+		super()
+		this.enter = spec.enter || null
+		this.leave = spec.leave || null
+	}
+
+	setEnter(spec) {
+		this.enter = spec
+	}
+
+	setLeave(spec) {
+		this.leave = spec
+	}
+
+	onMount() {
+		if (this.enter) {
+			var enter = {e: this.atom.element, p: clonedeep(this.enter), o: {duration: 200}};
+			applyStarts(this.atom.element, enter.p);
+			v(enter)
+		}
+	}
+
+	onUnmountBefore() {
+		if (this.leave) {
+			var leave = {e: this.atom.element, p: clonedeep(this.leave), o: {duration: 200}};
+			applyStarts(this.atom.element, leave.p);
+			return v(leave)
+		}
+	}
+
+	onDestroyBefore() {
+		v.Utilities.removeData(this.atom.element, ['velocity', 'fxqueue']);
+	}
+}
+
 export function V(element, specs) {
 	let s = clonedeep(specs);
 	if (element instanceof Atom) element = atom.element;
 	s.e = element;
 	return v(s);
 }
+
+
+// The velocity decorator ?
+export function velocity(specs) {
+	return function (atom) {
+		atom.addController(new VelocityCtrl(clonedeep(specs)))
+	}
+}
+
