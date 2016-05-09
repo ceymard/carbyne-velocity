@@ -7,5 +7,8 @@
   "main": "./velocity",
   "dependencies": {
     "velocity-animate": "^1.2.3"
+  },
+  "devDependencies": {
+    "babel-preset-es2015-loose": "^7.0.0"
   }
 }

@@ -23,7 +23,7 @@ export class Staggerer {
 		this.cumulated_amount = 0;
 	}
 
-	getDelay() : integer {
+	getDelay() {
 		let delta_since_last = (new Date) - this.last;
 		this.cumulated_amount = Math.max(0, this.cumulated_amount - delta_since_last);
 
