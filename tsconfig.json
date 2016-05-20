@@ -15,7 +15,9 @@
         "!./node_modules/**/*.ts"
     ],
     "files": [
-        "./src/velocity.ts"
+        "./src/velocity.ts",
+        "./typings/velocity-animate/velocity-animate.d.ts",
+        "./typings/es6-promise/es6-promise.d.ts"
     ]
 
 }
