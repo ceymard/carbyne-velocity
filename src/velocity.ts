@@ -1,8 +1,6 @@
-/// <reference path="../typings/velocity-animate/velocity-animate.d.ts" />
 
 import {Atom, Controller, clonedeep} from 'carbyne';
-import {default as v, $} from 'velocity-animate';
-import 'velocity-animate/velocity.ui';
+import * as v from 'velocity-animate';
 
 function mkAnimation(elt, spec) {
 
