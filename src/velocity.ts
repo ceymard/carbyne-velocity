@@ -1,3 +1,4 @@
+/// <reference path="../typings/velocity-animate/velocity-animate.d.ts" />
 
 import {Atom, Controller, clonedeep} from 'carbyne';
 import {default as v, $} from 'velocity-animate';
@@ -16,22 +17,25 @@ function applyStarts(element, props) {
 
 
 /// XXX this is not up to what we want
-export class Staggerer {
-	constructor(amount) {
-		this.last = new Date;
-		this.amount = amount;
-		this.cumulated_amount = 0;
-	}
+// export class Staggerer {
+// 	constructor(amount) {
+// 		this.last = new Date;
+// 		this.amount = amount;
+// 		this.cumulated_amount = 0;
+// 	}
 
-	getDelay() {
-		let delta_since_last = (new Date) - this.last;
-		this.cumulated_amount = Math.max(0, this.cumulated_amount - delta_since_last);
+// 	getDelay() {
+// 		let delta_since_last = (new Date) - this.last;
+// 		this.cumulated_amount = Math.max(0, this.cumulated_amount - delta_since_last);
 
-		this.last = new Date;
-	}
-}
+// 		this.last = new Date;
+// 	}
+// }
 
 export class VelocityCtrl extends Controller {
+
+	enter: Object
+	leave: Object
 
 	constructor(spec) {
 		super()
@@ -70,7 +74,7 @@ export class VelocityCtrl extends Controller {
 
 export function V(element, specs) {
 	let s = clonedeep(specs);
-	if (element instanceof Atom) element = atom.element;
+	if (element instanceof Atom) element = element.element;
 	s.e = element;
 	return v(s);
 }

@@ -4,11 +4,12 @@
   "repository": "https://github.com/ceymard/carbyne-velocity",
   "description": "Velocity animations with carbyne.",
   "license": "MIT",
-  "main": "./velocity",
+  "main": "./src/velocity",
+  "typings": "./src/velocity.d.ts",
   "dependencies": {
     "velocity-animate": "^1.2.3"
   },
-  "devDependencies": {
-    "babel-preset-es2015-loose": "^7.0.0"
+  "scripts": {
+    "build": "tsc"
   }
 }
